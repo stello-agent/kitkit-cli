@@ -1,14 +1,10 @@
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
-}
+mod client;
+mod error;
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+pub mod auth;
+pub mod sessions;
+pub mod shared_memory;
+pub mod spaces;
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
-}
+pub use client::{DEFAULT_BASE_URL, KitKitClient, KitKitClientConfig};
+pub use error::{KitKitError, Result};
