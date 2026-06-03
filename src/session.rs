@@ -41,9 +41,9 @@ impl Printer for ReadablePrinter<GetSessionDigestResponse> {
         table.add_row(["id", digest.id.as_str()]);
         table.add_row(["label", digest.label.as_str()]);
         table.add_row(["status", status_text(digest.status)]);
-        table.add_row(["memory", digest.memory.as_deref().unwrap_or("")]);
-        table.add_row(["insight", digest.insight.as_deref().unwrap_or("")]);
         println!("{table}");
+        println!("insight:\n{}", digest.insight.as_deref().unwrap_or(""));
+        println!("digest:\n{}", digest.memory.as_deref().unwrap_or(""));
         Ok(())
     }
 }
