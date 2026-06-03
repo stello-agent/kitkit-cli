@@ -1,3 +1,15 @@
+[package]
+name = "kitkit-cli"
+version = "0.1.0"
+
+authors.workspace = true
+edition.workspace = true
+repository.workspace = true
+license.workspace = true
+
+[package.metadata.docs.rs]
+rustdoc-args = ["--cfg", "docsrs"]
+
 [workspace]
 resolver = "3"
 members = ["kitkit-sdk"]
@@ -5,22 +17,34 @@ members = ["kitkit-sdk"]
 [workspace.package]
 authors = ["uchouT <i@uchout.moe>"]
 edition = "2024"
+repository = "https://github.com/stello-agent/kitkit-cli"
 license = "MIT OR Apache-2.0"
 
 [workspace.dependencies]
 serde = { version = "1" }
 serde_json = { version = "1" }
 
-[package]
-name = "kitkit-cli"
-version = "0.1.0"
-
-authors.workspace = true
-edition.workspace = true
-license.workspace = true
-
-[package.metadata.docs.rs]
-rustdoc-args = ["--cfg", "docsrs"]
-
 [dependencies]
-kitkit-sdk = { version = "0.1.0", path = "kitkit-sdk" }
+anyhow = "1"
+clap = { version = "4", features = ["derive", "env"] }
+comfy-table = "7"
+directories = "6"
+kitkit-sdk = { path = "kitkit-sdk", version = "0.1.0" }
+rpassword = "7"
+serde = { workspace = true, features = ["derive"] }
+serde_json = { workspace = true }
+tokio = { version = "1", features = ["macros"] }
+
+[profile.dev]
+opt-level = 0
+debug = true
+
+[profile.dev.package."*"]
+opt-level = 2
+
+[profile.release]
+opt-level = "z"
+strip = true
+lto = true
+panic = "abort"
+codegen-units = 1
