@@ -1,6 +1,9 @@
 [package]
 name = "kitkit-cli"
 version = "0.1.0"
+description = "Command-line interface for KitKit conversation trees, shared memory, and insights."
+keywords = ["agent", "cli", "kitkit", "memory", "stello"]
+categories = ["command-line-utilities"]
 
 authors.workspace = true
 edition.workspace = true

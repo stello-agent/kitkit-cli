@@ -13,6 +13,8 @@ use clap::Parser;
 use cli::{Cli, Command};
 use output::Output;
 
+pub const VERSION: &str = env!("CARGO_PKG_VERSION");
+
 #[tokio::main(flavor = "current_thread")]
 async fn main() -> Result<()> {
     let cli = Cli::parse();

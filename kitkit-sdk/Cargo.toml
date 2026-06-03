@@ -1,6 +1,9 @@
 [package]
 name = "kitkit-sdk"
 version = "0.1.0"
+description = "Rust SDK for the KitKit REST API."
+keywords = ["kitkit", "sdk", "api", "agent", "memory"]
+categories = ["api-bindings"]
 authors.workspace = true
 edition.workspace = true
 license.workspace = true
