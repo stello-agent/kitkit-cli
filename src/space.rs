@@ -4,7 +4,6 @@ use crate::output::{
     Output, Printer, ReadablePrinter, empty_text, kv_table, status_text, table_with_header,
 };
 use anyhow::Result;
-use comfy_table::Table;
 use kitkit_sdk::spaces::{
     self as spaces_api, ForkContext, ForkSessionRequest, ForkSessionResponse, ListSpacesResponse,
     SessionTreeNode, Space,
@@ -82,9 +81,7 @@ impl Printer for ReadablePrinter<Space> {
 
 impl Printer for ReadablePrinter<SessionTreeNode> {
     fn print_output(self) -> Result<()> {
-        let mut table = table_with_header(["depth", "id", "label", "status", "turns"]);
-        add_topology_rows(&mut table, &self.inner, 0);
-        println!("{table}");
+        println!("{}", render_topology_tree(&self.inner));
         Ok(())
     }
 }
@@ -103,17 +100,51 @@ impl Printer for ReadablePrinter<ForkSessionResponse> {
     }
 }
 
-fn add_topology_rows(table: &mut Table, node: &SessionTreeNode, depth: usize) {
-    table.add_row([
-        depth.to_string(),
-        node.id.clone(),
-        format!("{}{}", "  ".repeat(depth), node.label),
-        status_text(node.status).to_string(),
-        node.turn_count.to_string(),
-    ]);
-    for child in &node.children {
-        add_topology_rows(table, child, depth + 1);
+fn render_topology_tree(root: &SessionTreeNode) -> String {
+    let mut lines = vec![format_topology_node(root)];
+    for (index, child) in root.children.iter().enumerate() {
+        add_topology_tree_lines(&mut lines, child, "", index + 1 == root.children.len());
     }
+    lines.join("\n")
+}
+
+fn add_topology_tree_lines(
+    lines: &mut Vec<String>,
+    node: &SessionTreeNode,
+    prefix: &str,
+    is_last: bool,
+) {
+    let connector = if is_last { "└── " } else { "├── " };
+    lines.push(format!("{prefix}{connector}{}", format_topology_node(node)));
+
+    let child_prefix = if is_last {
+        format!("{prefix}    ")
+    } else {
+        format!("{prefix}│   ")
+    };
+    for (index, child) in node.children.iter().enumerate() {
+        add_topology_tree_lines(
+            lines,
+            child,
+            &child_prefix,
+            index + 1 == node.children.len(),
+        );
+    }
+}
+
+fn format_topology_node(node: &SessionTreeNode) -> String {
+    format!(
+        "{} ({}) [{}, {}]",
+        node.label,
+        node.id,
+        status_text(node.status),
+        turn_count_text(node.turn_count)
+    )
+}
+
+fn turn_count_text(turn_count: u64) -> String {
+    let unit = if turn_count == 1 { "turn" } else { "turns" };
+    format!("{turn_count} {unit}")
 }
 
 fn fork_context(context: ForkContextArg) -> ForkContext {
