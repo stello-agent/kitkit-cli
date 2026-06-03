@@ -76,3 +76,7 @@ JSON output is produced from the strongly typed SDK response structs.
 ## Commands
 
 See `--help`
+
+## License
+
+MIT OR Apache-2.0
