@@ -9,10 +9,19 @@ The CLI is intended for agents such as Codex and Claude Code that need to act as
 a KitKit "main" process: inspect a whole conversation tree, read shared context,
 push insights to sessions, and create new fork nodes.
 
+## Skills
+
+Reusable agent skills live in `skills/`:
+
+- `kitkit-cli`: KitKit mental model, auth, shared memory, and base CLI workflow.
+- `kitkit-conversation-tree`: topology and targeted digest reading.
+- `kitkit-insight`: cross-session insight push workflow.
+- `kitkit-fork`: fork creation and context-mode selection.
+- `kitkit-as-kitty`: high-level Kitty role that composes the lower-level skills.
+
 ## TODOs
 
 - [ ] documentation refined
-- [ ] provide skills
 
 ## Build
 

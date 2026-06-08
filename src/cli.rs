@@ -105,7 +105,7 @@ pub enum Command {
 pub enum AuthCommand {
     #[command(
         about = "Log in and cache access/refresh tokens.\n\nWithout --email, the CLI prompts for the account email. Without --password-stdin, it prompts for the password without echoing it. The cached token is scoped to the current --base-url.",
-        after_help = "Examples:\n  kitkit-cli auth login\n  kitkit-cli auth login --email user@example.com\n  printf '%s' \"$KITKIT_PASSWORD\" | kitkit-cli auth login --email \"$KITKIT_EMAIL\" --password-stdin\n\nAfter login, run `kitkit-cli auth status` to confirm the cached account."
+        after_help = "Examples:\n  kitkit-cli auth login\n  kitkit-cli auth login --email user@example.com\n  printf '%s' \"KITKIT_PASSWORD\" | kitkit-cli auth login --email \"KITKIT_EMAIL\" --password-stdin\n\nAfter login, run `kitkit-cli auth status` to confirm the cached account."
     )]
     Login(LoginArgs),
     #[command(
@@ -131,7 +131,7 @@ pub struct LoginArgs {
 
     #[arg(
         long,
-        help = "Read the password from stdin instead of prompting.\n\nUseful for non-interactive scripts, for example: `printf '%s' \"$KITKIT_PASSWORD\" | kitkit-cli auth login --email \"$KITKIT_EMAIL\" --password-stdin`."
+        help = "Read the password from stdin instead of prompting.\n\nUseful for non-interactive scripts, for example: `printf '%s' \"KITKIT_PASSWORD\" | kitkit-cli auth login --email \"KITKIT_EMAIL\" --password-stdin`."
     )]
     pub password_stdin: bool,
 }
