@@ -1,6 +1,6 @@
 [package]
 name = "kitkit-cli"
-version = "0.1.0"
+version = "0.1.1"
 description = "Command-line interface for KitKit conversation trees, shared memory, and insights."
 keywords = ["agent", "cli", "kitkit", "memory", "stello"]
 categories = ["command-line-utilities"]
@@ -9,6 +9,7 @@ authors.workspace = true
 edition.workspace = true
 repository.workspace = true
 license.workspace = true
+exclude.workspace = true
 
 [package.metadata.docs.rs]
 rustdoc-args = ["--cfg", "docsrs"]
@@ -22,6 +23,7 @@ authors = ["uchouT <i@uchout.moe>"]
 edition = "2024"
 repository = "https://github.com/stello-agent/kitkit-cli"
 license = "MIT OR Apache-2.0"
+exclude = ["skills/*"]
 
 [workspace.dependencies]
 serde = { version = "1" }
