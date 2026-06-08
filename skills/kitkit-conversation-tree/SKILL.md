@@ -7,7 +7,7 @@ description: "Use when an agent needs to treat a KitKit or Stello conversation t
 
 ## Start From Topology
 
-Use `$kitkit-cli` first if authentication, space selection, or command basics are not already established.
+Use `kitkit-cli` first if authentication, space selection, or command basics are not already established.
 
 Load the tree before choosing nodes:
 
@@ -68,4 +68,4 @@ For branch comparison:
 3. Read the ancestor digest.
 4. Read each branch digest.
 5. Compare goals, assumptions, decisions, blockers, and stale facts.
-6. Use `$kitkit-insight` when a finding should be pushed into an active session.
+6. Use `kitkit-insight` when a finding should be pushed into an active session.

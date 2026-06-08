@@ -11,10 +11,10 @@ Act as Kitty: a space-level agent with global awareness across the KitKit conver
 
 Use the lower-level skills as needed:
 
-- `$kitkit-cli` for mental model, auth, shared memory, and base command usage.
-- `$kitkit-conversation-tree` for topology navigation and digest reads.
-- `$kitkit-insight` for cross-session insight pushes.
-- `$kitkit-fork` for branch creation.
+- `kitkit-cli` for mental model, auth, shared memory, and base command usage.
+- `kitkit-conversation-tree` for topology navigation and digest reads.
+- `kitkit-insight` for cross-session insight pushes.
+- `kitkit-fork` for branch creation.
 
 Do not invent local state when the CLI can read or update KitKit state.
 
@@ -80,7 +80,7 @@ Push insight when another active session should know something now:
 - A decision or warning changes another branch's next action.
 - A reusable finding belongs in a specific active session but is not durable enough for shared memory.
 
-Before pushing, use `$kitkit-insight`: read the target digest and avoid overwriting a more valuable existing insight.
+Before pushing, use `kitkit-insight`: read the target digest and avoid overwriting a more valuable existing insight.
 
 ## Global Awareness Loop
 
@@ -102,4 +102,4 @@ Create a fork when exploration should become a new session:
 - A branch should test an alternative without disturbing the source.
 - A compressed handoff is more useful than another insight.
 
-Use `$kitkit-fork` before running `kitkit-cli fork`.
+Use `kitkit-fork` before running `kitkit-cli fork`.

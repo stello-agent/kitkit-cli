@@ -9,7 +9,7 @@ description: "Use when an agent needs to create or plan KitKit fork sessions wit
 
 Use `fork` to create a child session from an existing source session. A fork is a new topology node for separate exploration, specialization, or handoff.
 
-Use `$kitkit-cli` for command basics and `$kitkit-conversation-tree` to select the source node.
+Use `kitkit-cli` for command basics and `kitkit-conversation-tree` to select the source node.
 
 ## Pre-Fork Checklist
 

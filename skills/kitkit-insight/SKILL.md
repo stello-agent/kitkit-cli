@@ -21,7 +21,7 @@ Do not use insight as normal chat, durable memory, a scratchpad, or a full summa
 
 ## Safety Workflow
 
-Use `$kitkit-conversation-tree` if the target session is not already known.
+Use `kitkit-conversation-tree` if the target session is not already known.
 
 Before writing:
 
