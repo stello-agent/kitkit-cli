@@ -29,6 +29,30 @@ Reusable agent skills live in `skills/`:
 cargo build
 ```
 
+## Install
+
+Linux and macOS use the same shell installer:
+
+```bash
+curl --proto '=https' --tlsv1.2 -LsSf https://raw.githubusercontent.com/stello-agent/kitkit-cli/main/install.sh | sh
+```
+
+Windows PowerShell:
+
+```powershell
+irm https://raw.githubusercontent.com/stello-agent/kitkit-cli/main/install.ps1 | iex
+```
+
+To pin a release:
+
+```bash
+curl --proto '=https' --tlsv1.2 -LsSf https://raw.githubusercontent.com/stello-agent/kitkit-cli/main/install.sh | sh -s -- --version v0.1.1
+```
+
+```powershell
+$env:KITKIT_VERSION = "v0.1.1"; irm https://raw.githubusercontent.com/stello-agent/kitkit-cli/main/install.ps1 | iex
+```
+
 ## Authentication
 
 Login is interactive by default:
